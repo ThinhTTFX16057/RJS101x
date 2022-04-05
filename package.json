@@ -1,0 +1,22 @@
+{
+  "name": "rjs101x---lab",
+  "version": "1.0.0",
+  "description": "test ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThinhTTFX16057/RJS101x.git"
+  },
+  "author": "ThinhttFx16507",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThinhTTFX16057/RJS101x/issues"
+  },
+  "homepage": "https://github.com/ThinhTTFX16057/RJS101x#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
