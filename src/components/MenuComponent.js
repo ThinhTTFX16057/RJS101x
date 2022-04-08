@@ -1,44 +1,29 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle}from 'reactstrap';
-
+import {Card, CardImg, CardImgOverlay, CardTitle}from 'reactstrap';
+import DishDetail from './DishdetailComponent';
 
 class Menu extends Component {
     constructor(props){
         super(props);
         this.state = {
-            xemthucdon: null
+            selectedDish: null
         }
     }
 
-    showmota(thucdon){
-        this.setState({xemthucdon: thucdon})
+    onDishSelect(dishes){
+        this.setState({selectedDish: dishes})
     }
 
-    renderShowmota(xemthucdon){
-        if (xemthucdon != null){return(
-            <Card key={xemthucdon.id} className='col-12 col-md-5 m-1'>
-                <CardImg src={xemthucdon.image} alt={xemthucdon.name} />
-                <CardBody>
-                    <CardTitle>{xemthucdon.name}</CardTitle>
-                    <CardText>{xemthucdon.description}</CardText>
-                </CardBody>
-            </Card>
-        )}
-        else {return(
-            <div></div>
-        )}
-    }
+    
 
     render(){
-        //trong Appp.js thì thucdon có state la obj DISHES trich xuat tu shared/dishes.js
-        //thucdon=DISHES [ {...} ]
-        const displaymenu = this.props.thucdon.map( (x)=> {
+        const displaymenu = this.props.dishes.map( (dish)=> {
             return(
                 
-                    <Card key={x.id} onClick={()=>this.showmota(x)} className='col-12 col-md-5 m-1'>
-                        <CardImg src={x.image} alt={x.name} />
+                    <Card key={dish.id} onClick={()=>this.onDishSelect(dish)} className='col-12 col-md-5 m-1'>
+                        <CardImg src={dish.image} alt={dish.name} />
                         <CardImgOverlay>
-                            <CardTitle>{x.name}</CardTitle>
+                            <CardTitle>{dish.name}</CardTitle>
                         </CardImgOverlay>
                     </Card>
             );
@@ -49,7 +34,7 @@ class Menu extends Component {
                     {displaymenu}
                 </div>
                 <div className='row'>
-                    {this.renderShowmota(this.state.xemthucdon)}
+                    <DishDetail dish={this.state.selectedDish}/>
                 </div>
             </div>
         );
