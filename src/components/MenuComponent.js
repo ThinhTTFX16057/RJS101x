@@ -1,31 +1,18 @@
 import React, {Component} from 'react';
 import {Card, CardImg, CardImgOverlay, CardTitle}from 'reactstrap';
-import DishDetail from './DishdetailComponent';
+
 
 class Menu extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            selectedDish: null
-        }
-    }
-
-    onDishSelect(dishes){
-        this.setState({selectedDish: dishes})
-    }
-
-    
 
     render(){
         const displaymenu = this.props.dishes.map( (dish)=> {
-            return(
-                
-                    <Card key={dish.id} onClick={()=>this.onDishSelect(dish)} className='col-12 col-md-5 m-1'>
-                        <CardImg src={dish.image} alt={dish.name} />
-                        <CardImgOverlay>
-                            <CardTitle>{dish.name}</CardTitle>
-                        </CardImgOverlay>
-                    </Card>
+            return(           
+                <Card key={dish.id} onClick={()=>this.props.onClick(dish.id)} className='col-12 col-md-5 m-1'>
+                    <CardImg src={dish.image} alt={dish.name} />
+                    <CardImgOverlay>
+                        <CardTitle>{dish.name}</CardTitle>
+                    </CardImgOverlay>
+                </Card>
             );
         });
         return (
@@ -33,16 +20,10 @@ class Menu extends Component {
                 <div className='row'>
                     {displaymenu}
                 </div>
-                <div className='row'>
-                    <DishDetail dish={this.state.selectedDish}/>
-                </div>
             </div>
         );
-
-
-    }
-
-    
+    }    
 }
 
 export default Menu
+//MenuComponent.js đóng vai trò presentational component để hiển thị Menu ban đầu, với sự kiện onClick(id)) trả về id của món ăn trong CSDL
