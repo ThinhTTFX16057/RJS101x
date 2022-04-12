@@ -11,11 +11,11 @@ function RenderDish({x}){return(
         </CardBody>
     </Card>
 )}
-function RenderComments({y}){return(
+function RenderComments({a}){return(
     <div className='col-12 col-md-5 m-1'>
         <h4>Comment</h4>
         <ul className='list-unstyled'>
-            {y.map((x)=>{
+            {a.map((x)=>{
                 return(
                 <li key={x.id}>
                     <div>{x.comment}</div>
@@ -42,7 +42,7 @@ const DishDetail=(props)=>{
             </div>
             <div className="row">
                 <RenderDish x={props.dish}/>
-                <RenderComments y={props.comments}/>
+                <RenderComments a={props.comments}/>
             </div>
         </div>
         )}

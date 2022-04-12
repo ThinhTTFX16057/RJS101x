@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardImg, CardImgOverlay, CardTitle,Breadcrumb, BreadcrumbItem}from 'reactstrap';
 import {Link} from 'react-router-dom';
+
 function RenderMenuItem({dish}){
     return (
         <Card >
@@ -15,7 +16,7 @@ function RenderMenuItem({dish}){
 }
 
 const Menu=(props)=>{
-    const displaymenu = props.dishes.map( (dish)=>{
+    const displaymenu = props.dishes.map((dish)=>{
         return(           
             <div key={dish.id} className='col-12 col-md-5 m-1'>
                 <RenderMenuItem dish={dish}/>
@@ -34,7 +35,6 @@ const Menu=(props)=>{
                     <hr/>
                 </div>
             </div>
-            
             <div className='row'>
                 {displaymenu}
             </div>
