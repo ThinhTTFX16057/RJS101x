@@ -1,6 +1,7 @@
-import React from 'react';
-import {Card, CardBody, CardImg, CardText, CardTitle, Breadcrumb, BreadcrumbItem}from 'reactstrap';
+import React, { useState } from 'react';
+import {Card, CardBody, CardImg, CardText, CardTitle, Breadcrumb, BreadcrumbItem, Button}from 'reactstrap';
 import {Link} from 'react-router-dom';
+import CommentForm from './CommentForm';
 
 function RenderDish({x}){return(
     <Card key={x.id} className='col-12 col-md-5 m-1'>
@@ -11,7 +12,13 @@ function RenderDish({x}){return(
         </CardBody>
     </Card>
 )}
-function RenderComments({a}){return(
+
+
+function RenderComments({a}){
+    const [isOpen,setState] =useState(false);
+    const toggleModal = () => {setState(!isOpen)};
+    
+    return(
     <div className='col-12 col-md-5 m-1'>
         <h4>Comment</h4>
         <ul className='list-unstyled'>
@@ -24,8 +31,12 @@ function RenderComments({a}){return(
                 )
             })}
         </ul>
+        <Button outline onClick={toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comments</Button>
+        <CommentForm isOpen={isOpen} toggle={toggleModal}/>
     </div>
-)} 
+    )
+} 
+
 const DishDetail=(props)=>{
     if (props.dish!=null){return(
         <div className="container">
@@ -48,5 +59,4 @@ const DishDetail=(props)=>{
         )}
     else {return(<div></div>)}
 }   
-
 export default DishDetail
