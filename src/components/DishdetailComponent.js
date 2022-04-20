@@ -3,11 +3,12 @@ import {Card, CardBody, CardImg, CardText, CardTitle, Breadcrumb, BreadcrumbItem
 import {Link} from 'react-router-dom';
 import CommentForm from './CommentForm';
 import {Loading} from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
 
 
 function RenderDish({x}){return(
     <Card key={x.id} className='col-12 col-md-5 m-1'>
-        <CardImg src={x.image} alt={x.name} />
+        <CardImg src={baseUrl + x.image} alt={x.name} />
         <CardBody>
             <CardTitle>{x.name}</CardTitle>
             <CardText>{x.description}</CardText>
