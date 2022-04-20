@@ -31,7 +31,7 @@ class StaffList extends Component{
             annualLeave: "",
             overTime: "",
             image: "/assets/images/alberto.png",
-            touched: {name: false,doB: false,salaryScale: false,startDate:false,department: false, annualLeave: false,      overTime: false},
+            touched: {name: false,doB: false,salaryScale: false,startDate:false,department: false, annualLeave: false, overTime: false},
 
             isAddModalOpen: false,
             
@@ -200,8 +200,6 @@ class StaffList extends Component{
                             <Label htmlFor="name" md={2}>Tên</Label>
                             <Col md={10}>
                             <Input type="text" id="name" name="name"
-                                placeholder="Họ tên"
-                                
                                 valid={errors.name === ""}
                                 invalid={errors.name !== ""}
                                 onBlur={this.handleBlur("name")}
@@ -214,7 +212,6 @@ class StaffList extends Component{
                             <Label htmlFor="doB" md={2}>Ngày sinh</Label>
                             <Col md={10}>
                             <Input type="date" id="doB" name="doB"
-                                
                                 valid={errors.doB === ""}
                                 invalid={errors.doB !== ""}
                                 onBlur={this.handleBlur("doB")}
@@ -227,7 +224,6 @@ class StaffList extends Component{
                             <Label htmlFor="salaryScale" md={2}>Hệ số lương</Label>
                             <Col md={10}>
                             <Input type="text" id="salaryScale" name="salaryScale" 
-                                
                                 valid={errors.salaryScale === ""}
                                 invalid={errors.salaryScale !== ""}
                                 onBlur={this.handleBlur("salaryScale")}
@@ -240,7 +236,6 @@ class StaffList extends Component{
                             <Label htmlFor="startDate" md={2}>Ngày vào công ty</Label>
                             <Col md={10}>
                             <Input type="date" id="startDate" name="startDate"
-                                
                                 valid={errors.startDate === ""}
                                 invalid={errors.startDate !== ""}
                                 onBlur={this.handleBlur("startDate")}
@@ -253,7 +248,6 @@ class StaffList extends Component{
                             <Label htmlFor="department" md={2}>Phòng ban</Label>
                             <Col md={10}>
                             <Input type="select" id="department" name="department"
-                               
                                 onChange={this.handleInputChange}
                             >
                                 <option selected>Sale</option>
@@ -268,7 +262,6 @@ class StaffList extends Component{
                             <Label htmlFor="annualLeave" md={2}>Số ngày nghỉ còn lại</Label>
                             <Col md={10}>
                             <Input type="text" id="annualLeave" name="annualLeave"
-                              
                                 valid={errors.annualLeave === ""}
                                 invalid={errors.annualLeave !== ""}
                                 onBlur={this.handleBlur("annualLeave")}
@@ -281,7 +274,6 @@ class StaffList extends Component{
                             <Label htmlFor="overTime" md={2}>Số giờ đã làm thêm</Label>
                             <Col md={10}>
                             <Input type="text" id="overTime" name="overTime" 
-                                
                                 valid={errors.overTime === ""}
                                 invalid={errors.overTime !== ""}
                                 onBlur={this.handleBlur("overTime")}
