@@ -14,7 +14,7 @@ function RenderDish({x}){return(
 )}
 
 
-function RenderComments({a}){
+function RenderComments({comments,addComment,dishId}){
     const [isOpen,setState] =useState(false);
     const toggleModal = () => {setState(!isOpen)};
     
@@ -22,7 +22,7 @@ function RenderComments({a}){
     <div className='col-12 col-md-5 m-1'>
         <h4>Comment</h4>
         <ul className='list-unstyled'>
-            {a.map((x)=>{
+            {comments.map((x)=>{
                 return(
                 <li key={x.id}>
                     <div>{x.comment}</div>
@@ -32,7 +32,7 @@ function RenderComments({a}){
             })}
         </ul>
         <Button outline onClick={toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comments</Button>
-        <CommentForm isOpen={isOpen} toggle={toggleModal}/>
+        <CommentForm isOpen={isOpen} toggle={toggleModal} dishId={dishId} addComment={addComment}/>
     </div>
     )
 } 
@@ -53,7 +53,7 @@ const DishDetail=(props)=>{
             </div>
             <div className="row">
                 <RenderDish x={props.dish}/>
-                <RenderComments a={props.comments}/>
+                <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id}/>
             </div>
         </div>
         )}
