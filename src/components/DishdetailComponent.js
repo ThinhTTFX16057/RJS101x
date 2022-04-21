@@ -4,16 +4,21 @@ import {Link} from 'react-router-dom';
 import CommentForm from './CommentForm';
 import {Loading} from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
-
+import {FadeTransform, Fade, Stagger} from 'react-animation-components';
 
 function RenderDish({x}){return(
-    <Card key={x.id} className='col-12 col-md-5 m-1'>
-        <CardImg src={baseUrl + x.image} alt={x.name} />
-        <CardBody>
-            <CardTitle>{x.name}</CardTitle>
-            <CardText>{x.description}</CardText>
-        </CardBody>
-    </Card>
+    <div key={x.id} className='col-12 col-md-5 m-1'>
+        <FadeTransform in 
+        transformProps={{exitTransform: 'scale(0.5) translateY(-50%)'}}>
+            <Card >
+                <CardImg src={baseUrl + x.image} alt={x.name} />
+                <CardBody>
+                    <CardTitle>{x.name}</CardTitle>
+                    <CardText>{x.description}</CardText>
+                </CardBody>
+            </Card>
+        </FadeTransform>
+    </div>
 )}
 
 
@@ -25,14 +30,18 @@ function RenderComments({comments,postComment,dishId}){
     <div className='col-12 col-md-5 m-1'>
         <h4>Comment</h4>
         <ul className='list-unstyled'>
-            {comments.map((x)=>{
-                return(
-                <li key={x.id}>
-                    <div>{x.comment}</div>
-                    <div>-- {x.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</div>
-                </li>
-                )
-            })}
+            <Stagger in>
+                {comments.map((x)=>{
+                    return(
+                        <Fade in>
+                            <li key={x.id}>
+                                <div>{x.comment}</div>
+                                <div>-- {x.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(x.date)))}</div>
+                            </li>
+                        </Fade>
+                    )
+                })}
+            </Stagger>
         </ul>
         <Button outline onClick={toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comments</Button>
         <CommentForm isOpen={isOpen} toggle={toggleModal} dishId={dishId} postComment={postComment}/>
