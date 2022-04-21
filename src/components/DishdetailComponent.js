@@ -17,7 +17,7 @@ function RenderDish({x}){return(
 )}
 
 
-function RenderComments({comments,addComment,dishId}){
+function RenderComments({comments,postComment,dishId}){
     const [isOpen,setState] =useState(false);
     const toggleModal = () => {setState(!isOpen)};
     
@@ -35,7 +35,7 @@ function RenderComments({comments,addComment,dishId}){
             })}
         </ul>
         <Button outline onClick={toggleModal}><span className="fa fa-pencil fa-lg"></span> Submit Comments</Button>
-        <CommentForm isOpen={isOpen} toggle={toggleModal} dishId={dishId} addComment={addComment}/>
+        <CommentForm isOpen={isOpen} toggle={toggleModal} dishId={dishId} postComment={postComment}/>
     </div>
     )
 } 
@@ -74,7 +74,7 @@ const DishDetail=(props)=>{
             </div>
             <div className="row">
                 <RenderDish x={props.dish}/>
-                <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id}/>
+                <RenderComments comments={props.comments} postComment={props.postComment} dishId={props.dish.id}/>
             </div>
         </div>
         )}
