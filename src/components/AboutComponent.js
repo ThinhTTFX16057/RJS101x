@@ -1,13 +1,15 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media, CardImg, CardText, CardTitle,CardSubtitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import {Loading} from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
 
 const RenderLeader=(props)=>{
-    const displayleader = props.leaders.map((item)=>{
+    const displayleader = props.leaders.leaders.map((item)=>{
         return (
             <Card key={item.id} className='col-12 m-1'>
                 <div className='col-2'>
-                    <CardImg src={item.image} alt={item.name} />
+                    <CardImg src={baseUrl + item.image} alt={item.name} />
                 </div>
                 <CardBody className='col-10'>
                     <CardTitle>{item.name}</CardTitle>
@@ -17,13 +19,32 @@ const RenderLeader=(props)=>{
             </Card>
         );
      })
-    return(
-        <div className='container'>
-            <div className='row'>
-                {displayleader}
+     if (props.leaders.isLoading){
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading/>
+                </div>
             </div>
-        </div>
-    )
+        );
+    }
+    else if (props.leaders.errMess){
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.leaders.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else
+        return(
+            <div className='container'>
+                <div className='row'>
+                    {displayleader}
+                </div>
+            </div>
+        )
 }    
 
     
