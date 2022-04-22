@@ -3,22 +3,12 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media, CardImg,
 import { Link } from 'react-router-dom';
 import {Loading} from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
+import {Fade, Stagger} from 'react-animation-components';
 
 const RenderLeader=(props)=>{
-    const displayleader = props.leaders.leaders.map((item)=>{
-        return (
-            <Card key={item.id} className='col-12 m-1'>
-                <div className='col-2'>
-                    <CardImg src={baseUrl + item.image} alt={item.name} />
-                </div>
-                <CardBody className='col-10'>
-                    <CardTitle>{item.name}</CardTitle>
-                    <CardSubtitle>{item.designation}</CardSubtitle>
-                    <CardText>{item.description}</CardText>
-                </CardBody>
-            </Card>
-        );
-     })
+    <div>
+    
+     </div>
      if (props.leaders.isLoading){
         return (
             <div className="container">
@@ -40,9 +30,22 @@ const RenderLeader=(props)=>{
     else
         return(
             <div className='container'>
-                <div className='row'>
-                    {displayleader}
-                </div>
+                <Stagger in>
+                    {props.leaders.leaders.map((item)=>{
+                        return (
+                                <Card key={item.id} className="row m-1">
+                                    <div className='col-2 float-left'>
+                                        <CardImg src={baseUrl + item.image} alt={item.name} />
+                                    </div>
+                                    <CardBody className='col-10'>
+                                        <CardTitle>{item.name}</CardTitle>
+                                        <CardSubtitle>{item.designation}</CardSubtitle>
+                                        <CardText>{item.description}</CardText>
+                                    </CardBody>
+                                </Card>
+                        );
+                    })}
+                </Stagger>
             </div>
         )
 }    
